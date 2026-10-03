@@ -7,10 +7,10 @@
 **Let Factory Droid control your Mac with the Computer Use tool from the Codex app.**<br/>
 One command to install. No approval forms. No hand-edited paths.
 
-[![Stars](https://img.shields.io/github/stars/nikships/droid-codex-computer-use?style=for-the-badge&logo=github)](https://github.com/nikships/droid-codex-computer-use/stargazers)
-[![License](https://img.shields.io/github/license/nikships/droid-codex-computer-use?style=for-the-badge)](LICENSE)
-[![macOS](https://img.shields.io/badge/macOS-only-000000?style=for-the-badge&logo=apple&logoColor=white)](#requirements)
-[![Last commit](https://img.shields.io/github/last-commit/nikships/droid-codex-computer-use?style=for-the-badge)](https://github.com/nikships/droid-codex-computer-use/commits/main)
+[![Stars](https://img.shields.io/github/stars/nikships/droid-codex-computer-use?style=for-the-badge&labelColor=020202&color=EE6018&logo=github)](https://github.com/nikships/droid-codex-computer-use/stargazers)
+[![License](https://img.shields.io/github/license/nikships/droid-codex-computer-use?style=for-the-badge&labelColor=020202&color=EE6018)](LICENSE)
+[![macOS](https://img.shields.io/badge/macOS-only-EE6018?style=for-the-badge&labelColor=020202&color=EE6018&logo=apple&logoColor=white)](#requirements)
+[![Last commit](https://img.shields.io/github/last-commit/nikships/droid-codex-computer-use?style=for-the-badge&labelColor=020202&color=EE6018)](https://github.com/nikships/droid-codex-computer-use/commits/main)
 
 [Quick Start](#quick-start) · [How it works](docs/how-it-works.md) · [Security](#security) · [Troubleshooting](#troubleshooting)
 
