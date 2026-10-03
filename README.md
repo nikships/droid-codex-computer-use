@@ -1,11 +1,18 @@
 <div align="center">
 
+<img src="assets/banner.png" alt="Codex Computer Use for Factory Droid" width="100%" />
+
 # droid-codex-computer-use
 
-Use the Computer Use tool from the OpenAI Codex desktop app inside Factory Droid, with no approval forms.
+**Let Factory Droid control your Mac with the Computer Use tool from the Codex app.**<br/>
+One command to install. No approval forms. No hand-edited paths.
 
+[![Stars](https://img.shields.io/github/stars/nikships/droid-codex-computer-use?style=for-the-badge&logo=github)](https://github.com/nikships/droid-codex-computer-use/stargazers)
 [![License](https://img.shields.io/github/license/nikships/droid-codex-computer-use?style=for-the-badge)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/nikships/droid-codex-computer-use?style=for-the-badge)](https://github.com/nikships/droid-codex-computer-use/stargazers)
+[![macOS](https://img.shields.io/badge/macOS-only-000000?style=for-the-badge&logo=apple&logoColor=white)](#requirements)
+[![Last commit](https://img.shields.io/github/last-commit/nikships/droid-codex-computer-use?style=for-the-badge)](https://github.com/nikships/droid-codex-computer-use/commits/main)
+
+[Quick Start](#quick-start) · [How it works](docs/how-it-works.md) · [Security](#security) · [Troubleshooting](#troubleshooting)
 
 </div>
 
@@ -54,6 +61,11 @@ Computer Use is ready for Droid.
 Then try it in Droid:
 
 > Use computer use to open the Calculator app and calculate the square root of pi.
+
+Droid opens Calculator, switches to Scientific mode, and shows `√(π) = 1.77245385`.
+
+> [!TIP]
+> If this saved you some digging, [star the repo](https://github.com/nikships/droid-codex-computer-use/stargazers) so other Droid users can find it.
 
 ## What gets installed
 
@@ -137,6 +149,8 @@ This removes the `computer-use` entry from `~/.factory/mcp.json`, after a backup
 
 ```
 droid-codex-computer-use/
+├── assets/
+│   └── banner.png
 ├── docs/
 │   └── how-it-works.md   # protocol details and design notes
 ├── runtime/
@@ -158,3 +172,21 @@ droid-codex-computer-use/
 ## License
 
 [MIT](LICENSE). This project is not affiliated with OpenAI or Factory. It uses the Codex app's Computer Use runtime as installed on your machine and does not redistribute it.
+
+## Star History
+
+<div align="center">
+
+<a href="https://star-history.com/#nikships/droid-codex-computer-use&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=nikships/droid-codex-computer-use&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=nikships/droid-codex-computer-use&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=nikships/droid-codex-computer-use&type=Date" width="600" />
+  </picture>
+</a>
+
+## Stargazers
+
+[![Stargazers](https://reporoster.com/stars/dark/nikships/droid-codex-computer-use)](https://github.com/nikships/droid-codex-computer-use/stargazers)
+
+</div>
