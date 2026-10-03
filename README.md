@@ -187,6 +187,12 @@ droid-codex-computer-use/
 
 ## Stargazers
 
-[![Stargazers](https://reporoster.com/stars/dark/nikships/droid-codex-computer-use)](https://github.com/nikships/droid-codex-computer-use/stargazers)
+<a href="https://github.com/nikships/droid-codex-computer-use/stargazers">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?theme=dark&user=nikships&repo=droid-codex-computer-use" />
+    <source media="(prefers-color-scheme: light)" srcset="https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=nikships&repo=droid-codex-computer-use" />
+    <img alt="Stargazers" src="https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=nikships&repo=droid-codex-computer-use" />
+  </picture>
+</a>
 
 </div>
