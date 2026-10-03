@@ -38,25 +38,35 @@ You don't need your own Node.js. The scripts use the Node runtime that ships ins
 ## Quick Start
 
 ```sh
-git clone https://github.com/nikships/droid-codex-computer-use.git
-cd droid-codex-computer-use
-./install.sh
-./verify.sh --app Calculator
+curl -fsSL https://raw.githubusercontent.com/nikships/droid-codex-computer-use/main/install.sh | sh
 ```
 
-`install.sh` writes a `computer-use` server to `~/.factory/mcp.json`, after backing up the existing file. Droid reloads that file automatically, so the tools show up in your current session. If they don't, run `/mcp` in Droid or start a new session.
+That one command does everything:
 
-`verify.sh` starts the server the same way Droid does. It then lists what Computer Use can see and attaches to Calculator. A good run looks like this:
+1. Downloads this repo to a temporary folder.
+2. Finds the Codex app and its Computer Use server on your machine.
+3. Copies the launcher to `~/.factory/codex-computer-use/`.
+4. Adds a `computer-use` server to `~/.factory/mcp.json`, after backing up the existing file.
+5. Starts the server the same way Droid does, to check that it works.
+6. Deletes the temporary folder.
+
+A good run ends like this:
 
 ```
+Installed. Droid reloads mcp.json automatically.
+
+Checking the connection...
 ok  server started and initialized
 ok  tools: js, js_add_node_module_dir, js_reset, turn_ended
 ok  computer surface: 30 apps visible
 ok  browser surface: 1 browser(s) visible
-ok  attached to Calculator without an approval prompt
 
 Computer Use is ready for Droid.
 ```
+
+Droid reloads `mcp.json` automatically, so the tools show up in your current session. If they don't, run `/mcp` in Droid or start a new session.
+
+Prefer to read the script before running it? Download it first, or clone the repo and run `./install.sh` from there. It works the same way.
 
 Then try it in Droid:
 
@@ -93,20 +103,38 @@ The `mcp.json` entry looks like this, with your own paths filled in:
 }
 ```
 
-Run `./install.sh --print` to see the exact entry for your machine without changing anything.
+Pass `--print` to see the exact entry for your machine without changing anything:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/nikships/droid-codex-computer-use/main/install.sh | sh -s -- --print
+```
 
 ## Options
 
+Pass options after `sh -s --`:
+
 ```sh
-./install.sh --dry-run                    # show what would change
-./install.sh --name codex-cu              # use a different server name
-./install.sh --codex-app /path/To.app     # skip auto-detection
-./install.sh --codex-home ~/.codex-work   # non-default Codex data directory
-./install.sh --factory-dir ~/.factory     # non-default Factory config directory
-./install.sh --force                      # replace an existing entry this tool didn't create
+curl -fsSL https://raw.githubusercontent.com/nikships/droid-codex-computer-use/main/install.sh | sh -s -- --force
 ```
 
-`CODEX_APP_PATH`, `CODEX_HOME`, and `FACTORY_HOME` work in place of the matching flags. `verify.sh` and `uninstall.sh` accept `--name` and `--factory-dir` too.
+| Option | What it does |
+|--------|--------------|
+| `--print` | Print the `mcp.json` entry and exit without changing anything. |
+| `--dry-run` | Show what would change without writing. |
+| `--force` | Replace an existing entry with the same name that this tool didn't create. |
+| `--no-verify` | Skip the connection check after installing. |
+| `--name <name>` | Use a different server name (default `computer-use`). |
+| `--codex-app <path>` | Use this Codex app instead of auto-detecting it. |
+| `--codex-home <path>` | Non-default Codex data folder (default `~/.codex`). |
+| `--factory-dir <path>` | Non-default Factory config folder (default `~/.factory`). |
+
+`CODEX_APP_PATH`, `CODEX_HOME`, and `FACTORY_HOME` work in place of the matching flags. Set `CODEX_CU_REF` to a tag, branch, or commit to install that version instead of `main`.
+
+To test that Computer Use can control a specific app without an approval prompt, run the check on its own:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/nikships/droid-codex-computer-use/main/verify.sh | sh -s -- --app Calculator
+```
 
 If you already set up a `computer-use` server by hand, the installer stops rather than overwrite it. Re-run with `--force` to replace it. Your old file is still backed up first.
 
@@ -133,14 +161,14 @@ The launcher reads the server definition each time it starts. It prefers the one
 | `Could not find the Codex desktop app` | Install the Codex app, or pass `--codex-app /path/to/App.app`. |
 | `This Codex app build does not include the computer-use runtime` | Update the Codex app. |
 | Warning that `Codex Computer Use.app` wasn't found | Open the Codex app, turn on Computer Use, and grant its permissions once. |
-| `verify.sh` shows a browser surface warning | Computer Use for desktop apps still works. Browser control needs Chrome and the Codex Chrome extension from the Codex app. |
+| The connection check shows a browser surface warning | Computer Use for desktop apps still works. Browser control needs Chrome and the Codex Chrome extension from the Codex app. |
 | Tools don't appear in Droid | Run `/mcp` in Droid to see the server's status, or start a new session. |
 | Clicks or screenshots fail | Check System Settings > Privacy & Security, under Accessibility and Screen Recording, for `Codex Computer Use`. |
 
 ## Uninstall
 
 ```sh
-./uninstall.sh
+curl -fsSL https://raw.githubusercontent.com/nikships/droid-codex-computer-use/main/uninstall.sh | sh
 ```
 
 This removes the `computer-use` entry from `~/.factory/mcp.json`, after a backup, and deletes `~/.factory/codex-computer-use/`. It leaves the shared app-approval file in place.
@@ -162,7 +190,7 @@ droid-codex-computer-use/
 │   ├── run-node.sh       # runs scripts with Node from the Codex app
 │   ├── uninstall.mjs
 │   └── verify.mjs
-├── install.sh
+├── install.sh            # works from a clone or piped from curl
 ├── LICENSE
 ├── README.md
 ├── uninstall.sh

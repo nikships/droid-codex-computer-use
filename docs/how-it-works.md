@@ -84,5 +84,11 @@ All other messages, in both directions, are forwarded unchanged. That includes t
 ## Updates
 
 - **Codex app updates:** nothing to do. The launcher looks up the server definition each time it starts.
-- **Codex app moved or renamed:** run `./install.sh` again. The `mcp.json` entry stores the app path because Droid needs a fixed `command` to run.
-- **Repo updates:** `git pull`, then `./install.sh` to copy the new launcher into `~/.factory/codex-computer-use/`.
+- **Codex app moved or renamed:** run the install command again. The `mcp.json` entry stores the app path because Droid needs a fixed `command` to run.
+- **New versions of this repo:** run the install command again. It copies the latest launcher into `~/.factory/codex-computer-use/`.
+
+## The curl installer
+
+`install.sh`, `verify.sh`, and `uninstall.sh` each check whether they are running from a checkout. If they are, they run the matching script in `scripts/` directly. If they are piped from `curl`, they download the repo tarball for `main` (or `CODEX_CU_REF`) into a temporary folder, run the script from there, and delete the folder on exit. The installed launcher lives in `~/.factory/codex-computer-use/`, so it doesn't depend on the temporary copy.
+
+Each script wraps its body in a function that runs on the last line. So when the script is piped into `sh`, nothing runs until the whole file has downloaded. A dropped connection can't run half a script.

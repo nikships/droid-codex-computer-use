@@ -1,4 +1,5 @@
 // Installs the Codex computer-use launcher and registers it in Droid's mcp.json.
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,6 +29,7 @@ Options:
   --print                Print the mcp.json entry and exit without changing anything
   --dry-run              Show what would change without writing
   --force                Replace an existing entry with the same name that this tool did not create
+  --no-verify            Skip the connection check that runs after installing
   -h, --help             Show this help
 `;
 
@@ -39,6 +41,7 @@ const options = parseArgs(process.argv.slice(2), {
   print: "boolean",
   "dry-run": "boolean",
   force: "boolean",
+  "no-verify": "boolean",
 });
 if (options.help) {
   process.stdout.write(HELP);
@@ -117,4 +120,15 @@ writeJsonAtomic(configFile, config);
 
 log();
 if (backup) log(`Backed up the previous mcp.json to ${backup}`);
-log(`Installed. Droid reloads mcp.json automatically. Run ./verify.sh to test the connection.`);
+log("Installed. Droid reloads mcp.json automatically.");
+
+if (options["no-verify"]) process.exit(0);
+
+log();
+log("Checking the connection...");
+const verify = spawnSync(
+  process.execPath,
+  [path.join(repoRoot, "scripts", "verify.mjs"), "--name", name, "--factory-dir", factory],
+  { stdio: ["ignore", "inherit", "inherit"] },
+);
+process.exit(verify.status ?? 1);

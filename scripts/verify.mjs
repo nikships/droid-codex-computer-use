@@ -34,7 +34,7 @@ const name = options.name ?? DEFAULT_SERVER_NAME;
 const configFile = mcpConfigPath(factoryDir(options["factory-dir"]));
 const entry = readMcpConfig(configFile).mcpServers[name];
 if (!entry) {
-  console.error(`No "${name}" server in ${configFile}. Run ./install.sh first.`);
+  console.error(`No "${name}" server in ${configFile}. Run the installer first.`);
   process.exit(1);
 }
 
